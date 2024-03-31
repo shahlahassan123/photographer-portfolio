@@ -85,14 +85,14 @@ body{
   color: #fff;
 }
 
-/* .main{
+.main{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(500px,2fr)) repeat(auto-fit, minmax(500px,2fr)) repeat(auto-fit, minmax(500px,2fr));
   gap:1rem;
   overflow-y: auto;
   height: 100vh;
   padding: 1rem;
-} */
+}
 
 /* .portfolioItem{
   width: 100%;
@@ -102,14 +102,14 @@ body{
 } */
 
 
-.main {
+/* .main {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   gap: 1rem;
   overflow-y: auto;
   height: 100vh;
   padding: 1rem;
-}
+} */
 
 /* .lazy-load-image-background {
   width: 100%;
