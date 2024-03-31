@@ -1,5 +1,6 @@
 import * as React from 'react'
 import Nav from './Nav'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 // import axios from "axios"
 // import {portfolio} from "./client/portfolioData"
 
@@ -89,10 +90,15 @@ const Portfolio = () => {
     <div className='App'>
      <Nav />
     <div className='main'>
-      {/* <img src='/photos/DSC_0871.JPG' /> */}
       {portfolio.map((photo , index )=>{
         return(
-        <img src={photo} key={index} className={`portfolioItem portfolioItem-${index+1}`}/>
+        <img
+            key={index}
+            src={photo} 
+            effect="blur"
+            className={`portfolioItem portfolioItem-${index+1}`}
+            alt={`Portfolio item ${index+1}`}
+          />
         )
       })}
     </div>
