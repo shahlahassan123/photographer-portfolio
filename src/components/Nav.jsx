@@ -29,6 +29,7 @@ const Nav = () => {
       ) : (
         isMenuClicked && <NavLinks  />
       )}
+      
     </div>    
   )
 }

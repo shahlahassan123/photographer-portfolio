@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Nav from './Nav'
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+// import { LazyLoadImage } from 'react-lazy-load-image-component';
 // import axios from "axios"
 // import {portfolio} from "./client/portfolioData"
 
@@ -58,34 +58,6 @@ const portfolio  = [
 
 const Portfolio = () => {
 
-  // type portfolioData = {
-  //   name : string
-  // }
-
-  // const [portfolioData, setPortfolioData] = React.useState<portfolioData[]>([]);
-
-  // React.useEffect(()=>{
-  //   // axios.get<portfolioData[]>("/api/portfolio")
-  //   // .then((res : any)=>console.log(res.data))
-  //   // .catch((err : any)=> console.log(err))
-  //   const apiUrl = '/api/portfolio';
-  //   fetch(apiUrl)
-  //     .then((response) => {
-  //       if (!response.ok) {
-  //         throw new Error('Network response was not ok');
-  //       }
-  //       return response.json();
-  //     })
-  //     .then((data: portfolioData[]) => {
-  //       setPortfolioData(data);
-  //     })
-  //     .catch((error) => {
-  //       console.error('Error fetching data:', error);
-  //     });
-  // },[])
-
-
-
   return (
     <div className='App'>
      <Nav />
@@ -95,7 +67,8 @@ const Portfolio = () => {
         <img
             key={index}
             src={photo} 
-            effect="blur"
+       
+            loading="lazy"
             className={`portfolioItem portfolioItem-${index+1}`}
             alt={`Portfolio item ${index+1}`}
           />
@@ -105,6 +78,8 @@ const Portfolio = () => {
     </div>
    
   )
+
+  
 }
 
 export default Portfolio
