@@ -1,16 +1,16 @@
 import * as React from 'react'
+import { useEffect } from 'react'
+import { useRef } from 'react'
 import Nav from './Nav'
-// import { LazyLoadImage } from 'react-lazy-load-image-component';
-// import axios from "axios"
-// import {portfolio} from "./client/portfolioData"
 
 
-// type portfolioType = string[]
+
+
 const portfolio  = [
   "/photos/DSC_3997.JPG",
   "/photos/DSC_0871.JPG",
-  "/photos/DSC_0885.JPG",
-  "/photos/DSC_0898.JPG",
+  "/photos/RBK_9827.JPG",
+  "/photos/DSC_4024.JPG",
   "/photos/DSC_0912.JPG",
   "/photos/DSC_1234.JPG",
   "/photos/DSC_1311.JPG",
@@ -19,7 +19,7 @@ const portfolio  = [
   "/photos/DSC_1912.JPG",
   "/photos/DSC_3982.JPG",
   "/photos/DSC_3937.JPG",
-  "/photos/DSC_4024.JPG",
+  "/photos/DSC_0898.JPG",
   "/photos/DSC_4047.JPG",
   "/photos/RBK_9085.JPG",
   "/photos/RBK_7667.JPG",
@@ -27,7 +27,7 @@ const portfolio  = [
   "/photos/RBK_7396.JPG",
   "/photos/RBK_0710.JPG",
   "/photos/RBK_9888.JPG",
-  "/photos/RBK_9827.JPG",
+  "/photos/DSC_0885.JPG",
   "/photos/RBK_9589.JPG",
   "/photos/RBK_9508.JPG",
   "/photos/DSC_8853.JPG",
@@ -58,28 +58,45 @@ const portfolio  = [
 
 const Portfolio = () => {
 
-  return (
-    <div className='App'>
-     <Nav />
-    <div className='main'>
-      {portfolio.map((photo , index )=>{
-        return(
-        <img
-            key={index}
-            src={photo} 
-       
-            loading="lazy"
-            className={`portfolioItem portfolioItem-${index+1}`}
-            alt={`Portfolio item ${index+1}`}
-          />
-        )
-      })}
-    </div>
-    </div>
-   
-  )
 
-  
-}
+useEffect(() => {
+  const imgs = document.querySelectorAll('.portfolioItem');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        const src = img.getAttribute('data-src');
+        img.setAttribute('src', src);
+        img.classList.add('fade');
+        observer.unobserve(img);
+      }
+    });
+  }, { threshold: 0.1 }); 
+
+  imgs.forEach(img => {
+    observer.observe(img);
+  });
+
+  return () => observer.disconnect(); 
+}, []);
+
+return (
+  <div className='App'>
+    <Nav />
+    <div className='main'>
+      {portfolio.map((photo, index) => (
+        <img
+          key={index}
+          data-src={photo}
+          alt={`Portfolio item ${index + 1}`}
+          className={`portfolioItem portfolioItem-${index + 1}`}
+          loading="lazy"
+        />
+      ))}
+    </div>
+  </div>
+);
+};
 
 export default Portfolio
